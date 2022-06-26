@@ -11,7 +11,7 @@
 #include "risc-v32.h"
 
 extern int Register[32];
-extern int Memory[1000000];
+extern int Memory[500000];
 extern int Current;
 //read commands into memory
 enum Command {

@@ -10,7 +10,7 @@
 #include "tool.h"
 
 extern int Register[32];
-extern int Memory[1000000];
+extern int Memory[500000];
 extern int Current;
 
 void Lui(const std::string &dir) {

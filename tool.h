@@ -9,7 +9,7 @@
 #include <iostream>
 
 extern int Register[32];
-extern int Memory[1000000];
+extern int Memory[500000];
 extern int Current;
 
 int Binary_Decimal(const std::string b_number) {

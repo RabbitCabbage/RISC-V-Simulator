@@ -4,7 +4,7 @@
 #include "tool.h"
 
 int Register[32];
-int Memory[1000000];
+int Memory[500000];
 int Current = 0;
 
 int main() {
