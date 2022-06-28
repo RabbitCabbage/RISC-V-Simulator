@@ -7,10 +7,10 @@
 int main() {
     ReadCommand();
     while (1) {
-        MEM();
-        EX();
-        ID();
         WB();
+        MEM();
+        ID();
+        EX();
         IF();
         if (Execute.empty() && WriteMem.empty() && WriteReg.empty() && ReadReg.empty() && Halt)break;
     }
