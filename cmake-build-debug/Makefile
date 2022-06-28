@@ -123,32 +123,32 @@ untitled4/fast:
 	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/build
 .PHONY : untitled4/fast
 
-main.o: main.cpp.o
+src_seq.o: src_seq.cpp.o
 
-.PHONY : main.o
+.PHONY : src_seq.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/main.cpp.o
-.PHONY : main.cpp.o
+src_seq.cpp.o:
+	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/src_seq.cpp.o
+.PHONY : src_seq.cpp.o
 
-main.i: main.cpp.i
+src_seq.i: src_seq.cpp.i
 
-.PHONY : main.i
+.PHONY : src_seq.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/main.cpp.i
-.PHONY : main.cpp.i
+src_seq.cpp.i:
+	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/src_seq.cpp.i
+.PHONY : src_seq.cpp.i
 
-main.s: main.cpp.s
+src_seq.s: src_seq.cpp.s
 
-.PHONY : main.s
+.PHONY : src_seq.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/main.cpp.s
-.PHONY : main.cpp.s
+src_seq.cpp.s:
+	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/src_seq.cpp.s
+.PHONY : src_seq.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... untitled4"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src_seq.o"
+	@echo "... src_seq.i"
+	@echo "... src_seq.s"
 .PHONY : help
 
 

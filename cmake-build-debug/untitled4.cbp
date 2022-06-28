@@ -82,7 +82,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/Users/lu&apos;ren&apos;jia&apos;d&apos;s/CLionProjects/risc-v32I/main.cpp">
+		<Unit filename="/mnt/c/Users/lu&apos;ren&apos;jia&apos;d&apos;s/CLionProjects/risc-v32I/src_seq.cpp">
 			<Option target="untitled4"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/lu&apos;ren&apos;jia&apos;d&apos;s/CLionProjects/risc-v32I/CMakeLists.txt">

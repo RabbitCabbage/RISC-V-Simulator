@@ -1,1 +1,1 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/untitled4.dir/main.cpp.o  -o untitled4 
+/usr/bin/c++  -g  -rdynamic CMakeFiles/untitled4.dir/src_seq.cpp.o  -o untitled4 

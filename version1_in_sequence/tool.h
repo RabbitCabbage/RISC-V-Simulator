@@ -44,11 +44,11 @@ std::string Decimal_Hex(int number) {
 
 std::string Hex_Binary(const std::string& h_number) {
     int number = Hex_Decimal(h_number);
-//    //std::cout << number << std::endl;
+//    ////std::cout << number << std::endl;
     std::string b_number;
     b_number.clear();
     for (int i = 31; i >= 0; --i) {
-//        //std::cout << ((number >> i) & 1) << std::endl;
+//        ////std::cout << ((number >> i) & 1) << std::endl;
         b_number += (char) ('0' + (int) ((number >> i) & 1));
     }
     return b_number;
@@ -58,7 +58,7 @@ std::string Decimal_Binary32(const int& number) {
     std::string b_number;
     b_number.clear();
     for (int i = 31; i >= 0; --i) {
-//        //std::cout << ((number >> i) & 1) << std::endl;
+//        ////std::cout << ((number >> i) & 1) << std::endl;
         b_number += (char) ('0' + (int) ((number >> i) & 1));
     }
     return b_number;
@@ -68,7 +68,7 @@ std::string Decimal_Binary16(const int& number) {
     std::string b_number;
     b_number.clear();
     for (int i = 15; i >= 0; --i) {
-//        //std::cout << ((number >> i) & 1) << std::endl;
+//        ////std::cout << ((number >> i) & 1) << std::endl;
         b_number += (char) ('0' + (int) ((number >> i) & 1));
     }
     return b_number;
@@ -78,7 +78,7 @@ std::string Decimal_Binary8(const int& number) {
     std::string b_number;
     b_number.clear();
     for (int i = 7; i >= 0; --i) {
-//        //std::cout << ((number >> i) & 1) << std::endl;
+//        ////std::cout << ((number >> i) & 1) << std::endl;
         b_number += (char) ('0' + (int) ((number >> i) & 1));
     }
     return b_number;
@@ -88,7 +88,7 @@ std::string Decimal_Binary5(const int& number) {
     std::string b_number;
     b_number.clear();
     for (int i = 4; i >= 0; --i) {
-//        //std::cout << ((number >> i) & 1) << std::endl;
+//        ////std::cout << ((number >> i) & 1) << std::endl;
         b_number += (char) ('0' + (int) ((number >> i) & 1));
     }
     return b_number;
@@ -139,49 +139,49 @@ void R_Type(const std::string &dir, int &rs2, int &rs1, int &rd) {
     rs2 = Binary_Decimal(dir.substr(7, 5));
     rs1 = Binary_Decimal(dir.substr(12, 5));
     rd = Binary_Decimal(dir.substr(20, 5));
-    //std::cout << "rs1 = " << rs1 << " ";
-    //std::cout << "rs2 = " << rs2 << " ";
-    //std::cout << "rd = " << rd;
+    ////std::cout << "rs1 = " << rs1 << " ";
+    ////std::cout << "rs2 = " << rs2 << " ";
+    ////std::cout << "rd = " << rd;
 }
 
 void I_Type(const std::string &dir, std::string &imm, int &rs1, int &rd) {
     imm = dir.substr(0, 12);
     rs1 = Binary_Decimal(dir.substr(12, 5));
     rd = Binary_Decimal(dir.substr(20, 5));
-    //std::cout << "rs1 = " << rs1 << " ";
-    //std::cout << "rd = " << rd << " ";
-    //std::cout << "imm = " << Decode(imm);
+    ////std::cout << "rs1 = " << rs1 << " ";
+    ////std::cout << "rd = " << rd << " ";
+    ////std::cout << "imm = " << Decode(imm);
 }
 
 void S_Type(const std::string &dir, std::string &imm, int &rs1, int &rs2) {
     imm = dir.substr(0, 7) + dir.substr(20, 5);
     rs2 = Binary_Decimal(dir.substr(7, 5));
     rs1 = Binary_Decimal(dir.substr(12, 5));
-    //std::cout << "rs1 = " << rs1 << " ";
-    //std::cout << "rs2 = " << rs2 << " ";
-    //std::cout << "imm = " << Decode(imm);
+    ////std::cout << "rs1 = " << rs1 << " ";
+    ////std::cout << "rs2 = " << rs2 << " ";
+    ////std::cout << "imm = " << Decode(imm);
 }
 
 void B_Type(const std::string &dir, std::string &imm, int &rs1, int &rs2) {
     imm = dir.substr(0, 1) + dir.substr(24, 1) + dir.substr(1, 6) + dir.substr(20, 4) + "0";
     rs2 = Binary_Decimal(dir.substr(7, 5));
     rs1 = Binary_Decimal(dir.substr(12, 5));
-    //std::cout << "rs1 = " << rs1 << " ";
-    //std::cout << "rs2 = " << rs2 << " ";
-    //std::cout << "imm = " << Decode(imm);
+    ////std::cout << "rs1 = " << rs1 << " ";
+    ////std::cout << "rs2 = " << rs2 << " ";
+    ////std::cout << "imm = " << Decode(imm);
 }
 
 void U_Type(const std::string &dir, std::string &imm, int &rd) {
     imm = dir.substr(0, 20);
     rd = Binary_Decimal(dir.substr(20, 5));
-    //std::cout << "rd = " << rd << " ";
-    //std::cout << " imm = " << imm;
+    ////std::cout << "rd = " << rd << " ";
+    ////std::cout << " imm = " << imm;
 }
 
 void J_Type(const std::string &dir, std::string &imm, int &rd) {
     imm = dir.substr(0, 1) + dir.substr(12, 8) + dir.substr(11, 1) + dir.substr(1, 10) + "0";
     rd = Binary_Decimal(dir.substr(20, 5));
-    //std::cout << "rd = " << rd << " jump to" << Decimal_Hex(Binary_Decimal(imm) + Current - 4);
+    ////std::cout << "rd = " << rd << " jump to" << Decimal_Hex(Binary_Decimal(imm) + Current - 4);
 }
 
 

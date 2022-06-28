@@ -6,37 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/contol.h
-string
--
-iostream
--
-tool.h
-/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/tool.h
-risc-v32.h
-/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/risc-v32.h
-
-/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/main.cpp
+/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/src_seq.cpp
 iostream
 -
 string
--
-contol.h
-/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/contol.h
-tool.h
-/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/tool.h
-
-/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/risc-v32.h
-string
--
-iostream
--
-tool.h
-/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/tool.h
-
-/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/tool.h
-string
--
-iostream
 -
 

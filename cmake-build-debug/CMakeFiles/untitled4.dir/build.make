@@ -57,27 +57,27 @@ include CMakeFiles/untitled4.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/untitled4.dir/flags.make
 
-CMakeFiles/untitled4.dir/main.cpp.o: CMakeFiles/untitled4.dir/flags.make
-CMakeFiles/untitled4.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/untitled4.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/untitled4.dir/main.cpp.o -c "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/main.cpp"
+CMakeFiles/untitled4.dir/src_seq.cpp.o: CMakeFiles/untitled4.dir/flags.make
+CMakeFiles/untitled4.dir/src_seq.cpp.o: ../src_seq.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/untitled4.dir/src_seq.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/untitled4.dir/src_seq.cpp.o -c "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/src_seq.cpp"
 
-CMakeFiles/untitled4.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/untitled4.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/main.cpp" > CMakeFiles/untitled4.dir/main.cpp.i
+CMakeFiles/untitled4.dir/src_seq.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/untitled4.dir/src_seq.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/src_seq.cpp" > CMakeFiles/untitled4.dir/src_seq.cpp.i
 
-CMakeFiles/untitled4.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled4.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/main.cpp" -o CMakeFiles/untitled4.dir/main.cpp.s
+CMakeFiles/untitled4.dir/src_seq.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/untitled4.dir/src_seq.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/src_seq.cpp" -o CMakeFiles/untitled4.dir/src_seq.cpp.s
 
 # Object files for target untitled4
 untitled4_OBJECTS = \
-"CMakeFiles/untitled4.dir/main.cpp.o"
+"CMakeFiles/untitled4.dir/src_seq.cpp.o"
 
 # External object files for target untitled4
 untitled4_EXTERNAL_OBJECTS =
 
-untitled4: CMakeFiles/untitled4.dir/main.cpp.o
+untitled4: CMakeFiles/untitled4.dir/src_seq.cpp.o
 untitled4: CMakeFiles/untitled4.dir/build.make
 untitled4: CMakeFiles/untitled4.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable untitled4"
