@@ -13,7 +13,7 @@ class Counter {
 private:
     int Status = 0;
 public:
-    bool Query() {
+    bool Query() const {
         if (Status == 0 || Status == 1)return false;
         else return true;
     }

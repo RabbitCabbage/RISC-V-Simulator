@@ -24,7 +24,7 @@ namespace ds {
         std::string imm;
         Type type;
         bool jump;
-        int pc;
+        long long pc;
     };
 }
 std::queue<std::pair<std::string, std::pair<bool, int>>> ReadReg;

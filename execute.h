@@ -27,7 +27,7 @@ void Auipc(const ds::Operation &opt) {
 }
 
 void Jal(const ds::Operation &opt) {
-    Register[opt.rd] = Current - 4 * ReadReg.size();
+    Register[opt.rd] = Current - 4 * (int) ReadReg.size();
 //    //std::coutt << Register[opt.rd] << std::endl;
     Current += Decode(opt.imm) - 4;
     while (!ReadReg.empty()) {
@@ -42,7 +42,7 @@ void Jal(const ds::Operation &opt) {
 void Jalr(const ds::Operation &opt) {
     std::string cur = Decimal_Binary32(Decode(opt.imm) + opt.rs1_number);
     cur[31] = '0';
-    Register[opt.rd] = Current - 4 * ReadReg.size();
+    Register[opt.rd] = Current - 4 * (int) ReadReg.size();
     ////std::coutt << Register[opt.rd] << std::endl;
     Current = Binary_Decimal(cur);
     while (!ReadReg.empty()) {
@@ -56,7 +56,7 @@ void Jalr(const ds::Operation &opt) {
 void Beq(const ds::Operation &opt) {
     //std::coutt << "beq " << opt.rs1_number << "\t" << opt.rs2_number << std::endl;
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
-    int pc = opt.pc;
+    unsigned int pc = opt.pc;
     if (!opt.jump && opt.rs1_number == opt.rs2_number) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
@@ -84,7 +84,7 @@ void Beq(const ds::Operation &opt) {
 void Bne(const ds::Operation &opt) {
     //std::coutt << "bne " << opt.rs1_number << "\t" << opt.rs2_number << std::endl;
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
-    int pc = opt.pc;
+    unsigned int pc = opt.pc;
     if (!opt.jump && opt.rs1_number != opt.rs2_number) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
@@ -112,7 +112,7 @@ void Bne(const ds::Operation &opt) {
 void Blt(const ds::Operation &opt) {
     //std::coutt << "blt " << opt.rs1_number << "\t" << opt.rs2_number << std::endl;
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
-    int pc = opt.pc;
+    unsigned int pc = opt.pc;
     if (!opt.jump && opt.rs1_number < opt.rs2_number) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
@@ -140,7 +140,7 @@ void Blt(const ds::Operation &opt) {
 void Bge(const ds::Operation &opt) {
     //std::coutt << "bge " << opt.rs1_number << "\t" << opt.rs2_number << std::endl;
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
-    int pc = opt.pc;
+    unsigned int pc = opt.pc;
     if (!opt.jump && opt.rs1_number >= opt.rs2_number) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
@@ -168,7 +168,7 @@ void Bge(const ds::Operation &opt) {
 void Bltu(const ds::Operation &opt) {
     //std::coutt << "bltu " << ((unsigned) opt.rs1_number) << "\t" << ((unsigned) opt.rs2_number) << std::endl;
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
-    int pc = opt.pc;
+    unsigned int pc = opt.pc;
     if (!opt.jump && ((unsigned) opt.rs1_number) < ((unsigned) opt.rs2_number)) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
@@ -196,7 +196,7 @@ void Bltu(const ds::Operation &opt) {
 void Bgeu(const ds::Operation &opt) {
     //std::coutt << "bgeu " << ((unsigned) opt.rs1_number) << "\t" << ((unsigned) opt.rs2_number) << std::endl;
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
-    int pc = opt.pc;
+    unsigned int pc = opt.pc;
     if (!opt.jump && ((unsigned) opt.rs1_number) >= ((unsigned) opt.rs2_number)) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {

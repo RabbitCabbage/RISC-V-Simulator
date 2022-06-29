@@ -43,7 +43,7 @@ void IF() {
     command.clear();
     for (int i = 3; i >= 0; --i) {
         std::string part = Decimal_Hex(Memory[Current + i]);
-        if (part.length() == 1)part = '0' + part;
+        if (part.length() == 1)part = "0" + part;
         command += part;
     }
     //std::cout << "IF " << command << std::endl;
@@ -54,7 +54,7 @@ void IF() {
     }
     Current += 4;//每一次读完之后的current已经被放到了下一个位置
     std::string dir = Hex_Binary(command);
-    int pc = Hex_Decimal(command);
+    unsigned int pc = Hex_Decimal(command);
     std::string com = dir.substr(25, 7);
     if (com == "1100011") {
         bool jump = counter[pc % Mod].Query();
