@@ -65,7 +65,8 @@ void JalrDecode(const std::string &dir) {
     //std::cout << "jalr " << rd << " " << rs1 << " " << imm << std::endl;
 }
 
-void BeqDecode(const std::string &dir) {
+void BeqDecode(const std::pair<std::string, std::pair<bool, int>> &dir_pair) {
+    std::string dir = dir_pair.first;
     int rs2, rs1;
     std::string imm;
     B_Type(dir, imm, rs1, rs2);
@@ -74,11 +75,14 @@ void BeqDecode(const std::string &dir) {
     beq.rs1_number = ReadUpdatedReg(rs1);
     beq.rs2_number = ReadUpdatedReg(rs2);
     beq.type = ds::Beq;
+    beq.jump = dir_pair.second.first;
+    beq.pc = dir_pair.second.second;
     Execute.push(beq);
     //std::cout << "beq " << rs1 << " " << rs2 << " " << imm << std::endl;
 }
 
-void BneDecode(const std::string &dir) {
+void BneDecode(const std::pair<std::string, std::pair<bool, int>> &dir_pair) {
+    std::string dir = dir_pair.first;
     int rs2, rs1;
     std::string imm;
     B_Type(dir, imm, rs1, rs2);
@@ -87,11 +91,14 @@ void BneDecode(const std::string &dir) {
     bne.rs1_number = ReadUpdatedReg(rs1);
     bne.rs2_number = ReadUpdatedReg(rs2);
     bne.type = ds::Bne;
+    bne.jump = dir_pair.second.first;
+    bne.pc = dir_pair.second.second;
     Execute.push(bne);
     //std::cout << "bne " << rs1 << " " << rs2 << " " << imm << std::endl;
 }
 
-void BltDecode(const std::string &dir) {
+void BltDecode(const std::pair<std::string, std::pair<bool, int>> &dir_pair) {
+    std::string dir = dir_pair.first;
     int rs2, rs1;
     std::string imm;
     B_Type(dir, imm, rs1, rs2);
@@ -100,11 +107,14 @@ void BltDecode(const std::string &dir) {
     blt.rs1_number = ReadUpdatedReg(rs1);
     blt.rs2_number = ReadUpdatedReg(rs2);
     blt.type = ds::Blt;
+    blt.jump = dir_pair.second.first;
+    blt.pc = dir_pair.second.second;
     Execute.push(blt);
     //std::cout << "blt " << rs1 << " " << rs2 << " " << imm << std::endl;
 }
 
-void BgeDecode(const std::string &dir) {
+void BgeDecode(const std::pair<std::string, std::pair<bool, int>> &dir_pair) {
+    std::string dir = dir_pair.first;
     int rs2, rs1;
     std::string imm;
     B_Type(dir, imm, rs1, rs2);
@@ -113,11 +123,14 @@ void BgeDecode(const std::string &dir) {
     bge.rs1_number = ReadUpdatedReg(rs1);
     bge.rs2_number = ReadUpdatedReg(rs2);
     bge.type = ds::Bge;
+    bge.jump = dir_pair.second.first;
+    bge.pc = dir_pair.second.second;
     Execute.push(bge);
     //std::cout << "bge " << rs1 << " " << rs2 << " " << imm << std::endl;
 }
 
-void BltuDecode(const std::string &dir) {
+void BltuDecode(const std::pair<std::string, std::pair<bool, int>> &dir_pair) {
+    std::string dir = dir_pair.first;
     int rs2, rs1;
     std::string imm;
     B_Type(dir, imm, rs1, rs2);
@@ -126,11 +139,14 @@ void BltuDecode(const std::string &dir) {
     bltu.rs1_number = ReadUpdatedReg(rs1);
     bltu.rs2_number = ReadUpdatedReg(rs2);
     bltu.type = ds::Bltu;
+    bltu.jump = dir_pair.second.first;
+    bltu.pc = dir_pair.second.second;
     Execute.push(bltu);
     //std::cout << "bltu " << rs1 << " " << rs2 << " " << imm << std::endl;
 }
 
-void BgeuDecode(const std::string &dir) {
+void BgeuDecode(const std::pair<std::string, std::pair<bool, int>> &dir_pair) {
+    std::string dir = dir_pair.first;
     int rs2, rs1;
     std::string imm;
     B_Type(dir, imm, rs1, rs2);
@@ -139,6 +155,8 @@ void BgeuDecode(const std::string &dir) {
     bgeu.rs1_number = ReadUpdatedReg(rs1);
     bgeu.rs2_number = ReadUpdatedReg(rs2);
     bgeu.type = ds::Bgeu;
+    bgeu.jump = dir_pair.second.first;
+    bgeu.pc = dir_pair.second.second;
     Execute.push(bgeu);
     //std::cout << "bgeu " << rs1 << " " << rs2 << " " << imm << std::endl;
 }

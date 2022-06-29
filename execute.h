@@ -55,8 +55,9 @@ void Jalr(const ds::Operation &opt) {
 
 void Beq(const ds::Operation &opt) {
     //std::coutt << "beq " << opt.rs1_number << "\t" << opt.rs2_number << std::endl;
-    //现在的Current已经是指向下一条指令了，相当于正在执行的+4了
-    if (opt.rs1_number == opt.rs2_number) {
+    //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
+    int pc = opt.pc;
+    if (!opt.jump && opt.rs1_number == opt.rs2_number) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
@@ -64,14 +65,27 @@ void Beq(const ds::Operation &opt) {
         }
         while (!Execute.empty())Execute.pop();
         Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
+    } else if (opt.jump && opt.rs1_number != opt.rs2_number) {
+        Current -= Decode(opt.imm) - 4;
+        while (!ReadReg.empty())ReadReg.pop();
+        while (!Execute.empty())Execute.pop();
+        Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
+    } else {
+        Correct++;
+        counter[pc % Mod].Update(opt.jump);
     }
 }
 
 void Bne(const ds::Operation &opt) {
     //std::coutt << "bne " << opt.rs1_number << "\t" << opt.rs2_number << std::endl;
-    //现在的Current已经是指向下一条指令了，相当于正在执行的+4了
-    if (opt.rs1_number != opt.rs2_number) {
+    //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
+    int pc = opt.pc;
+    if (!opt.jump && opt.rs1_number != opt.rs2_number) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
@@ -79,14 +93,27 @@ void Bne(const ds::Operation &opt) {
         }
         while (!Execute.empty())Execute.pop();
         Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
+    } else if (opt.jump && opt.rs1_number == opt.rs2_number) {
+        Current -= Decode(opt.imm) - 4;
+        while (!ReadReg.empty())ReadReg.pop();
+        while (!Execute.empty())Execute.pop();
+        Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
+    } else {
+        Correct++;
+        counter[pc % Mod].Update(opt.jump);
     }
 }
 
 void Blt(const ds::Operation &opt) {
     //std::coutt << "blt " << opt.rs1_number << "\t" << opt.rs2_number << std::endl;
-    //现在的Current已经是指向下一条指令了，相当于正在执行的+4了
-    if (opt.rs1_number < opt.rs2_number) {
+    //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
+    int pc = opt.pc;
+    if (!opt.jump && opt.rs1_number < opt.rs2_number) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
@@ -94,14 +121,27 @@ void Blt(const ds::Operation &opt) {
         }
         while (!Execute.empty())Execute.pop();
         Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
+    } else if (opt.jump && opt.rs1_number >= opt.rs2_number) {
+        Current -= Decode(opt.imm) - 4;
+        while (!ReadReg.empty())ReadReg.pop();
+        while (!Execute.empty())Execute.pop();
+        Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
+    } else {
+        Correct++;
+        counter[pc % Mod].Update(opt.jump);
     }
 }
 
 void Bge(const ds::Operation &opt) {
     //std::coutt << "bge " << opt.rs1_number << "\t" << opt.rs2_number << std::endl;
-    //现在的Current已经是指向下一条指令了，相当于正在执行的+4了
-    if (opt.rs1_number >= opt.rs2_number) {
+    //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
+    int pc = opt.pc;
+    if (!opt.jump && opt.rs1_number >= opt.rs2_number) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
@@ -109,13 +149,27 @@ void Bge(const ds::Operation &opt) {
         }
         while (!Execute.empty())Execute.pop();
         Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
+    } else if (opt.jump && opt.rs1_number < opt.rs2_number) {
+        Current -= Decode(opt.imm) - 4;
+        while (!ReadReg.empty())ReadReg.pop();
+        while (!Execute.empty())Execute.pop();
+        Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
+    } else {
+        Correct++;
+        counter[pc % Mod].Update(opt.jump);
     }
 }
 
 void Bltu(const ds::Operation &opt) {
     //std::coutt << "bltu " << ((unsigned) opt.rs1_number) << "\t" << ((unsigned) opt.rs2_number) << std::endl;
-    if (((unsigned) opt.rs1_number) < ((unsigned) opt.rs2_number)) {
+    //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
+    int pc = opt.pc;
+    if (!opt.jump && ((unsigned) opt.rs1_number) < ((unsigned) opt.rs2_number)) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
@@ -123,13 +177,27 @@ void Bltu(const ds::Operation &opt) {
         }
         while (!Execute.empty())Execute.pop();
         Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
+    } else if (opt.jump && ((unsigned) opt.rs1_number) >= ((unsigned) opt.rs2_number)) {
+        Current -= Decode(opt.imm) - 4;
+        while (!ReadReg.empty())ReadReg.pop();
+        while (!Execute.empty())Execute.pop();
+        Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
+    } else {
+        Correct++;
+        counter[pc % Mod].Update(opt.jump);
     }
 }
 
 void Bgeu(const ds::Operation &opt) {
     //std::coutt << "bgeu " << ((unsigned) opt.rs1_number) << "\t" << ((unsigned) opt.rs2_number) << std::endl;
-    if (((unsigned) opt.rs1_number) >= ((unsigned) opt.rs2_number)) {
+    //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
+    int pc = opt.pc;
+    if (!opt.jump && ((unsigned) opt.rs1_number) >= ((unsigned) opt.rs2_number)) {
         Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
@@ -137,7 +205,19 @@ void Bgeu(const ds::Operation &opt) {
         }
         while (!Execute.empty())Execute.pop();
         Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
+    } else if (opt.jump && ((unsigned) opt.rs1_number) < ((unsigned) opt.rs2_number)) {
+        Current -= Decode(opt.imm) - 4;
+        while (!ReadReg.empty())ReadReg.pop();
+        while (!Execute.empty())Execute.pop();
+        Halt = false;
+        Wrong++;
+        counter[pc % Mod].Update(!opt.jump);
+    } else {
+        Correct++;
+        counter[pc % Mod].Update(opt.jump);
     }
 }
 

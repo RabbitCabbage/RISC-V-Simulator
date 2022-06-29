@@ -11,6 +11,7 @@
 #include <iostream>
 #include "define.h"
 #include "execute.h"
+#include "counter.h"
 
 void ReadCommand() {
     char x;
@@ -36,11 +37,6 @@ void ReadCommand() {
     }
 }
 
-//bool Counter() {
-//    static bool jump1 = false;
-//    static bool jump2 = false;
-//}
-
 void IF() {
     if (Halt)return;
     std::string command;
@@ -56,15 +52,25 @@ void IF() {
         Halt = true;
         return;//halt指令就不放进去了，并且halt之后新的指令也不读进来了
     }
-    command = Hex_Binary(command);
     Current += 4;//每一次读完之后的current已经被放到了下一个位置
-    ReadReg.push(command);
+    std::string dir = Hex_Binary(command);
+    int pc = Hex_Decimal(command);
+    std::string com = dir.substr(25, 7);
+    if (com == "1100011") {
+        bool jump = counter[pc % Mod].Query();
+        if (jump) {
+            std::string imm = dir.substr(0, 1) + dir.substr(24, 1) + dir.substr(1, 6) + dir.substr(20, 4) + "0";
+            Current += Decode(imm) - 4;
+            ReadReg.push({dir, {true, pc}});
+        } else ReadReg.push({dir, {false, pc}});
+    } else ReadReg.push({dir, {false, pc}});
 }
 
 void ID() {
     if (ReadReg.empty())return;//队列空了就不用执行了
     Register[0] = 0;
-    std::string dir = ReadReg.front();
+    auto dir_pair = ReadReg.front();
+    std::string dir = dir_pair.first;
     ReadReg.pop();
     //std::cout << "ID ";
     std::string com = dir.substr(25, 7);
@@ -74,12 +80,12 @@ void ID() {
     else if (com == "1100111")JalrDecode(dir);
     else if (com == "1100011") {
         std::string f3 = dir.substr(17, 3);
-        if (f3 == "000")BeqDecode(dir);
-        else if (f3 == "001")BneDecode(dir);
-        else if (f3 == "100")BltDecode(dir);
-        else if (f3 == "101")BgeDecode(dir);
-        else if (f3 == "110")BltuDecode(dir);
-        else if (f3 == "111")BgeuDecode(dir);
+        if (f3 == "000")BeqDecode(dir_pair);
+        else if (f3 == "001")BneDecode(dir_pair);
+        else if (f3 == "100")BltDecode(dir_pair);
+        else if (f3 == "101")BgeDecode(dir_pair);
+        else if (f3 == "110")BltuDecode(dir_pair);
+        else if (f3 == "111")BgeuDecode(dir_pair);
     } else if (com == "0000011") {
         std::string f3 = dir.substr(17, 3);
         if (f3 == "000")LbDecode(dir);

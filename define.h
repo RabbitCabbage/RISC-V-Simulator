@@ -6,6 +6,7 @@
 #define UNTITLED4_DEFINE_H
 
 #include <vector>
+#include "counter.h"
 
 int Current = 0;
 int Register[32];
@@ -22,14 +23,21 @@ namespace ds {
         int rs2 = 0;
         std::string imm;
         Type type;
+        bool jump;
+        int pc;
     };
 }
-std::queue<std::string> ReadReg;
+std::queue<std::pair<std::string, std::pair<bool, int>>> ReadReg;
 std::queue<ds::Operation> Execute;
 std::queue<std::pair<int, int>> WriteReg;
 std::queue<std::pair<int, std::pair<int, int>>> WriteMem;
 std::vector<int> MemUpdate;
 int Address, Bytes;
 int RegUpdate = 0, Number = 0;
-bool Halt=false;
+bool Halt = false;
+
+Counter counter[10007];
+const int Mod = 10007;
+int Wrong = 0;
+int Correct = 0;
 #endif //UNTITLED4_DEFINE_H
