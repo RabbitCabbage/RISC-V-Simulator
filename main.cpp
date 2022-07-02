@@ -18,10 +18,10 @@ int main() {
         //std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
         if (ReorderBuffer.size() == 1 && Halt)break;
         Register[0].value = 0;
-        for (int i = 0; i < 32; ++i) {
-            std::cout << Register[i].value << '\t';
-        }
-        std::cout << std::endl;
+//        for (int i = 0; i < 32; ++i) {
+//            std::cout << Register[i].value << '\t';
+//        }
+//        std::cout << std::endl;
         //if (CLK == 100)return 0;
     }
     std::cout << (Register[10].value & 255u) << std::endl;
