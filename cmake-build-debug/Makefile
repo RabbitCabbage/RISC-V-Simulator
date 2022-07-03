@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I"
+CMAKE_SOURCE_DIR = "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/RISC-V-Simulator"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/cmake-build-debug"
+CMAKE_BINARY_DIR = "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/RISC-V-Simulator/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/cmake-build-debug/CMakeFiles" "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/cmake-build-debug/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/RISC-V-Simulator/cmake-build-debug/CMakeFiles" "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/RISC-V-Simulator/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/RISC-V-Simulator/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named untitled4
+# Target rules for targets named code
 
 # Build rule for target.
-untitled4: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 untitled4
-.PHONY : untitled4
+code: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 code
+.PHONY : code
 
 # fast build rule for target.
-untitled4/fast:
-	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/build
-.PHONY : untitled4/fast
+code/fast:
+	$(MAKE) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/build
+.PHONY : code/fast
 
-src_seq.o: src_seq.cpp.o
+main.o: main.cpp.o
 
-.PHONY : src_seq.o
+.PHONY : main.o
 
 # target to build an object file
-src_seq.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/src_seq.cpp.o
-.PHONY : src_seq.cpp.o
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-src_seq.i: src_seq.cpp.i
+main.i: main.cpp.i
 
-.PHONY : src_seq.i
+.PHONY : main.i
 
 # target to preprocess a source file
-src_seq.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/src_seq.cpp.i
-.PHONY : src_seq.cpp.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-src_seq.s: src_seq.cpp.s
+main.s: main.cpp.s
 
-.PHONY : src_seq.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-src_seq.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled4.dir/build.make CMakeFiles/untitled4.dir/src_seq.cpp.s
-.PHONY : src_seq.cpp.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -158,10 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... untitled4"
-	@echo "... src_seq.o"
-	@echo "... src_seq.i"
-	@echo "... src_seq.s"
+	@echo "... code"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

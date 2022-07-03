@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I
+# Install script for directory: /mnt/c/Users/lu'ren'jia'd's/CLionProjects/RISC-V-Simulator
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/risc-v32I/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/lu'ren'jia'd's/CLionProjects/RISC-V-Simulator/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
