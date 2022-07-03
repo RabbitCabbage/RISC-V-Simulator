@@ -1,21 +1,15 @@
 //
-// Created by lu'ren'jia'd's on 2022/6/29.
+// Created by lu'ren'jia'd's on 2022/6/27.
 //
 
 #ifndef UNTITLED4_DEFINE_H
 #define UNTITLED4_DEFINE_H
 
+#include i<vector>
 #include "counter.h"
-#include <queue>
-#include <string>
-#include <vector>
-#include <map>
 
-unsigned int Current = 0;
-struct {
-    unsigned int value;
-    int rename = 0;//用RS的编号来rename,rename==0说明没有在重命名
-} Register[32];
+int Current = 0;
+int Register[32];
 int Memory[500000];
 namespace ds {
     enum Type {
@@ -25,48 +19,25 @@ namespace ds {
         Add, Sub, Addi
     };
     struct Operation {
-        int rd, rs1, rs2;
+        int rd = 0, rs1_number = 0, rs2_number = 0;
+        int rs2 = 0;
         std::string imm;
         Type type;
         bool jump;
-        unsigned int pc;
+        long long pc;
     };
 }
+std::queue<std::pair<std::string, std::pair<bool, int>>> ReadReg;
+std::queue<ds::Operation> Execute;
+std::queue<std::pair<int, int>> WriteReg;
+std::queue<std::pair<int, std::pair<int, int>>> WriteMem;
+std::vector<int> MemUpdate;
+int Address, Bytes;
+int RegUpdate = 0, Number = 0;
+bool Halt = false;
 
 Counter counter[10007];
 const int Mod = 10007;
 int Wrong = 0;
 int Correct = 0;
-int CLK = 0;
-//以下传递的信息分别是《《我预测的是否跳转，pc》，《clk，二进制命令》》
-std::queue<std::pair<std::pair<bool,unsigned int>, std::pair<int, std::string>>> InstructionQueue;
-
-struct StationSeat {
-    int rs2=0;
-    int clk;
-    int value1, value2;
-    int rename1 = 0, rename2 = 0;
-    int destination=0;
-    std::string imm;
-    unsigned int pc;
-    bool jump;
-    ds::Type type;
-};
-std::vector<StationSeat> ReservationStation;
-std::vector<StationSeat> StorageStation;
-struct BufferSeat {//NOLINT
-    bool ready = false;
-    int clk;
-    int destination;
-    ds::Type type;
-    //如果说type是涉及到读内存的load还要再issue的时候
-    //做相应的操作
-    int read_mem_address;
-    std::vector<int> value;
-    bool jump;
-    unsigned int pc;
-};
-
-std::map<int, BufferSeat> ReorderBuffer;
-bool Halt = false;
 #endif //UNTITLED4_DEFINE_H
