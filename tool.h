@@ -8,10 +8,6 @@
 #include <string>
 #include <iostream>
 
-extern int Register[32];
-extern int Memory[500000];
-extern int Current;
-
 int Binary_Decimal(const std::string &b_number) {
     int number = 0;
     for (long long i = b_number.length() - 1, j = 0; i >= 0; --i, ++j) {

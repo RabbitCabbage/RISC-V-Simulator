@@ -52,9 +52,9 @@ void IF() {
         Halt = true;
         return;//halt指令就不放进去了，并且halt之后新的指令也不读进来了
     }
+    unsigned int pc = Current;
     Current += 4;//每一次读完之后的current已经被放到了下一个位置
     std::string dir = Hex_Binary(command);
-    unsigned int pc = Hex_Decimal(command);
     std::string com = dir.substr(25, 7);
     if (com == "1100011") {
         bool jump = counter[pc % Mod].Query();
@@ -76,8 +76,8 @@ void ID() {
     std::string com = dir.substr(25, 7);
     if (com == "0110111")LuiDecode(dir);
     else if (com == "0010111")AuipcDecode(dir);
-    else if (com == "1101111")JalDecode(dir);
-    else if (com == "1100111")JalrDecode(dir);
+    else if (com == "1101111")JalDecode(dir_pair);
+    else if (com == "1100111")JalrDecode(dir_pair);
     else if (com == "1100011") {
         std::string f3 = dir.substr(17, 3);
         if (f3 == "000")BeqDecode(dir_pair);

@@ -27,12 +27,11 @@ void Auipc(const ds::Operation &opt) {
 }
 
 void Jal(const ds::Operation &opt) {
-    Register[opt.rd] = Current - 4 * (int) ReadReg.size();
-    //std::coutt << Register[opt.rd] << std::endl;
-    Current += Decode(opt.imm) - 4;
+    Register[opt.rd] = opt.pc + 4;
+    ////std::couttt << Register[opt.rd] << std::endl;
+    Current = opt.pc + Decode(opt.imm);
     while (!ReadReg.empty()) {
         ReadReg.pop();
-        Current -= 4;
     }
     while (!Execute.empty())Execute.pop();
     Halt = false;
@@ -42,7 +41,7 @@ void Jal(const ds::Operation &opt) {
 void Jalr(const ds::Operation &opt) {
     std::string cur = Decimal_Binary32(Decode(opt.imm) + opt.rs1_number);
     cur[31] = '0';
-    Register[opt.rd] = Current - 4 * (int) ReadReg.size();
+    Register[opt.rd] = opt.pc + 4;
     ////std::coutt << Register[opt.rd] << std::endl;
     Current = Binary_Decimal(cur);
     while (!ReadReg.empty()) {
@@ -58,20 +57,20 @@ void Beq(const ds::Operation &opt) {
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
     unsigned int pc = opt.pc;
     if (!opt.jump && opt.rs1_number == opt.rs2_number) {
-        Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
-            Current -= 4;
         }
+        Current = pc + Decode(opt.imm);
         while (!Execute.empty())Execute.pop();
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
     } else if (opt.jump && opt.rs1_number != opt.rs2_number) {
-        Current -= Decode(opt.imm) - 4;
-        while (!ReadReg.empty())ReadReg.pop();
-        while (!Execute.empty())Execute.pop();
+        while (!ReadReg.empty()) {
+            ReadReg.pop();
+        }
+        Current = pc + 4;
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
@@ -86,20 +85,20 @@ void Bne(const ds::Operation &opt) {
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
     unsigned int pc = opt.pc;
     if (!opt.jump && opt.rs1_number != opt.rs2_number) {
-        Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
-            Current -= 4;
         }
+        Current = pc + Decode(opt.imm);
         while (!Execute.empty())Execute.pop();
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
-        //std::coutt << "jump to " << Current << std::endl;
+        ////std::coutt << "jump to " << Current << std::endl;
     } else if (opt.jump && opt.rs1_number == opt.rs2_number) {
-        Current -= Decode(opt.imm) - 4;
-        while (!ReadReg.empty())ReadReg.pop();
-        while (!Execute.empty())Execute.pop();
+        while (!ReadReg.empty()) {
+            ReadReg.pop();
+        }
+        Current = pc + 4;
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
@@ -114,20 +113,20 @@ void Blt(const ds::Operation &opt) {
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
     unsigned int pc = opt.pc;
     if (!opt.jump && opt.rs1_number < opt.rs2_number) {
-        Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
-            Current -= 4;
         }
+        Current = pc + Decode(opt.imm);
         while (!Execute.empty())Execute.pop();
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
-        //std::coutt << "jump to " << Current << std::endl;
+        ////std::coutt << "jump to " << Current << std::endl;
     } else if (opt.jump && opt.rs1_number >= opt.rs2_number) {
-        Current -= Decode(opt.imm) - 4;
-        while (!ReadReg.empty())ReadReg.pop();
-        while (!Execute.empty())Execute.pop();
+        while (!ReadReg.empty()) {
+            ReadReg.pop();
+        }
+        Current = pc + 4;
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
@@ -142,20 +141,20 @@ void Bge(const ds::Operation &opt) {
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
     unsigned int pc = opt.pc;
     if (!opt.jump && opt.rs1_number >= opt.rs2_number) {
-        Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
-            Current -= 4;
         }
+        Current = pc + Decode(opt.imm);
         while (!Execute.empty())Execute.pop();
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
     } else if (opt.jump && opt.rs1_number < opt.rs2_number) {
-        Current -= Decode(opt.imm) - 4;
-        while (!ReadReg.empty())ReadReg.pop();
-        while (!Execute.empty())Execute.pop();
+        while (!ReadReg.empty()) {
+            ReadReg.pop();
+        }
+        Current = pc + 4;
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
@@ -170,20 +169,20 @@ void Bltu(const ds::Operation &opt) {
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
     unsigned int pc = opt.pc;
     if (!opt.jump && ((unsigned) opt.rs1_number) < ((unsigned) opt.rs2_number)) {
-        Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
-            Current -= 4;
         }
+        Current = pc + Decode(opt.imm);
         while (!Execute.empty())Execute.pop();
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
     } else if (opt.jump && ((unsigned) opt.rs1_number) >= ((unsigned) opt.rs2_number)) {
-        Current -= Decode(opt.imm) - 4;
-        while (!ReadReg.empty())ReadReg.pop();
-        while (!Execute.empty())Execute.pop();
+        while (!ReadReg.empty()) {
+            ReadReg.pop();
+        }
+        Current = pc + 4;
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
@@ -198,20 +197,20 @@ void Bgeu(const ds::Operation &opt) {
     //现在的Current已经是指向下一条指令了，相当于正在执行的+4或者已经跳转了
     unsigned int pc = opt.pc;
     if (!opt.jump && ((unsigned) opt.rs1_number) >= ((unsigned) opt.rs2_number)) {
-        Current += Decode(opt.imm) - 4;
         while (!ReadReg.empty()) {
             ReadReg.pop();
-            Current -= 4;
         }
+        Current = pc + Decode(opt.imm);
         while (!Execute.empty())Execute.pop();
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
         //std::coutt << "jump to " << Current << std::endl;
     } else if (opt.jump && ((unsigned) opt.rs1_number) < ((unsigned) opt.rs2_number)) {
-        Current -= Decode(opt.imm) - 4;
-        while (!ReadReg.empty())ReadReg.pop();
-        while (!Execute.empty())Execute.pop();
+        while (!ReadReg.empty()) {
+            ReadReg.pop();
+        }
+        Current = pc + 4;
         Halt = false;
         Wrong++;
         counter[pc % Mod].Update(!opt.jump);
@@ -248,17 +247,17 @@ void Lw(const ds::Operation &opt) {
     WriteReg.push({opt.rd, reg_number});
     Number = opt.rd;
     RegUpdate = reg_number;
-    //std::coutt << std::endl;
-    //std::coutt << "=========================================================" << std::endl;
-    //std::coutt << "Register[rs1] = " << opt.rs1_number << std::endl;
-    //std::coutt << "address = " << address << std::endl;
-    //std::coutt << ReadUpdatedMem(address) << " " << ReadUpdatedMem(address + 1) << " " << ReadUpdatedMem(address + 2)
+//    //std::coutt << std::endl;
+//    //std::coutt << "=========================================================" << std::endl;
+//    //std::coutt << "Register[rs1] = " << opt.rs1_number << std::endl;
+//    //std::coutt << "address = " << address << std::endl;
+//    //std::coutt << ReadUpdatedMem(address) << " " << ReadUpdatedMem(address + 1) << " " << ReadUpdatedMem(address + 2)
     //          << " "
     //          << ReadUpdatedMem(address + 3) << std::endl;
 
     //std::coutt << "lw " << opt.rd << " " << reg_number << std::endl;
-    //std::coutt << "=========================================================" << std::endl;
-    //std::coutt << std::endl;
+//    //std::coutt << "=========================================================" << std::endl;
+//    //std::coutt << std::endl;
 }
 
 void Lbu(const ds::Operation &opt) {
@@ -325,13 +324,13 @@ void Sw(const ds::Operation &opt) {
     MemUpdate.push_back(mem_number4);
     Address = address;
     Bytes = 4;
-    //std::coutt << std::endl;
-    //std::coutt << "=========================================================" << std::endl;
-    //std::coutt << "address = " << address << std::endl;
-    //std::coutt << mem_number << " " << mem_number2 << " " << mem_number3 << " "
+//    //std::coutt << std::endl;
+//    //std::coutt << "=========================================================" << std::endl;
+//    //std::coutt << "address = " << address << std::endl;
+//    //std::coutt << mem_number << " " << mem_number2 << " " << mem_number3 << " "
     //          << mem_number4 << std::endl;
-    //std::coutt << "sw " << std::endl;
-    //std::coutt << "=========================================================" << std::endl;
+    //std::coutt << "sw " << mem_number << std::endl;
+//    //std::coutt << "=========================================================" << std::endl;
 }
 
 void Xori(const ds::Operation &opt) {

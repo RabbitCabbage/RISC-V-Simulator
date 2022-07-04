@@ -7,10 +7,10 @@ int main() {
     ReadCommand();
     while (1) {
         WB();
-        MEM();
         ID();
-        EX();
+        MEM();
         IF();
+        EX();
         if (Execute.empty() && WriteMem.empty() && WriteReg.empty() && ReadReg.empty() && Halt)break;
     }
     std::cout << (Register[10] & 255u) << std::endl;

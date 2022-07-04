@@ -39,7 +39,8 @@ void AuipcDecode(const std::string &dir) {
     //std::cout << "auipc " << rd << " " << imm << std::endl;
 }
 
-void JalDecode(const std::string &dir) {
+void JalDecode(const std::pair<std::string, std::pair<bool, int>> &dir_pair) {
+    std::string dir = dir_pair.first;
     std::string imm;
     int rd;
     J_Type(dir, imm, rd);
@@ -47,11 +48,13 @@ void JalDecode(const std::string &dir) {
     jal.rd = rd;
     jal.imm = imm;
     jal.type = ds::Jal;
+    jal.pc = dir_pair.second.second;
     Execute.push(jal);
     //std::cout << "jal " << rd << " " << imm << std::endl;
 }
 
-void JalrDecode(const std::string &dir) {
+void JalrDecode(const std::pair<std::string, std::pair<bool, int>> &dir_pair) {
+    std::string dir = dir_pair.first;
     int rd, rs1;
     std::string imm;
     I_Type(dir, imm, rs1, rd);
@@ -61,6 +64,7 @@ void JalrDecode(const std::string &dir) {
     jalr.rd = rd;
     jalr.imm = imm;
     jalr.type = ds::Jalr;
+    jalr.pc = dir_pair.second.second;
     Execute.push(jalr);
     //std::cout << "jalr " << rd << " " << rs1 << " " << imm << std::endl;
 }

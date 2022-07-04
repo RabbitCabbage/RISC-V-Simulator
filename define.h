@@ -8,7 +8,7 @@
 #include <vector>
 #include "counter.h"
 
-int Current = 0;
+unsigned int Current = 0;
 int Register[32];
 int Memory[500000];
 namespace ds {
@@ -24,7 +24,7 @@ namespace ds {
         std::string imm;
         Type type;
         bool jump;
-        long long pc;
+        unsigned int pc;
     };
 }
 std::queue<std::pair<std::string, std::pair<bool, int>>> ReadReg;
